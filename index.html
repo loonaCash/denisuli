@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Денис и Ульяна флекс</title>
+  <style>
+    @font-face {
+      font-family: 'SaintAmour';
+      src: url('fonts/SaintAmourScript.otf') format('opentype');
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Doloman';
+      src: url('fonts/DolomanPavljenko.otf') format('opentype');
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Felidae';
+      src: url('fonts/Felidae.ttf') format('truetype');
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    .fade {
+      opacity: 0;
+      transition: opacity 1.1s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .fade.show {
+      opacity: 1;
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .fade {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ═══════════════════════ HERO W360 H677 ═══════════════════════ */
+    .b-hero {
+      width: 360px;
+      height: 677px;
+      overflow: hidden;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .b-hero__bg {
+      width: 360px;
+      height: 677px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: url('images/Denisul.webp') center/cover;
+    }
+
+    .b-hero__names {
+      width: 309px;
+      height: 179px;
+      position: absolute;
+      left: 40px;
+      top: 29px;
+    }
+
+    .b-hero__n1 {
+      font-family: 'SaintAmour', cursive;
+      font-size: 100px;
+      color: #FFFFFF;
+      position: absolute;
+      left: 12px;
+      /* Имя влево/вправо */
+      top: 0;
+      white-space: pre;
+      line-height: 1;
+    }
+
+    .b-hero__and {
+      font-family: 'SaintAmour', cursive;
+      font-size: 100px;
+      color: #FFFFFF;
+      position: absolute;
+      left: 140px;
+      top: 23px;
+      line-height: 1;
+    }
+
+    .b-hero__n2 {
+      font-family: 'SaintAmour', cursive;
+      font-size: 100px;
+      color: #FFFFFF;
+      position: absolute;
+      left: 150px;
+      top: 64px;
+      white-space: pre;
+      line-height: 1;
+    }
+
+    /* ═══════════════════════ ДОРОГИЕ ГОСТИ W360 H668 ═══════════════════════ */
+    .b-guests {
+      width: 360px;
+      height: 668px;
+      margin: 0 auto;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+    }
+
+    .b-guests__h {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1;
+      margin-bottom: 15px;
+      flex-shrink: 0;
+    }
+
+    .b-guests__sub {
+      font-family: 'Doloman', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      text-align: center;
+      width: 263px;
+      margin-bottom: 32px;
+      flex-shrink: 0;
+    }
+
+    .b-guests__date {
+      font-family: 'Felidae', serif;
+      font-size: 36px;
+      color: rgba(43, 36, 30, 1);
+      margin-bottom: 52px;
+      flex-shrink: 0;
+    }
+
+    .b-guests__map {
+      width: 223px;
+      height: 180px;
+      flex-shrink: 0;
+      overflow: hidden;
+      margin-bottom: 13px;
+    }
+
+    .b-guests__map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .b-guests__addr {
+      font-family: 'Doloman', serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      text-align: center;
+      width: 263px;
+      margin-bottom: 18px;
+      flex-shrink: 0;
+    }
+
+    /* кнопки */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 1px rgba(43, 36, 30, 1);
+      background: #fff;
+      cursor: pointer;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(43, 36, 30, 1);
+      transform: translateY(100%);
+      transition: transform .45s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .btn:hover::before {
+      transform: translateY(0);
+    }
+
+    .btn span {
+      font-family: 'Doloman', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      position: relative;
+      z-index: 1;
+      transition: color .45s cubic-bezier(.4, 0, .2, 1);
+      white-space: nowrap;
+    }
+
+    .btn:hover span {
+      color: #fff;
+    }
+
+    .btn--rsvp {
+      width: 226px;
+      height: 41px;
+      margin-bottom: 50px;
+    }
+
+    .btn--route {
+      width: 89px;
+      height: 41px;
+    }
+
+    /* ═══════════════════════ НАША ИСТОРИЯ W360 H668 ═══════════════════════ */
+    .b-story {
+      width: 360px;
+      height: 668px;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .b-story__h {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(calc(-50% + 18px));
+      white-space: pre;
+      line-height: 1;
+    }
+
+    .b-story__photo-l {
+      width: 158px;
+      height: 237px;
+      position: absolute;
+      left: 14px;
+      top: 231px;
+      background: url('images/kochela.webp') center/cover;
+    }
+
+    .b-story__photo-r {
+      width: 158px;
+      height: 237px;
+      position: absolute;
+      left: 188px;
+      top: 128px;
+      background: url('images/kochela2.webp') center/cover;
+      transform: rotateY(180deg);
+    }
+
+    .b-story__text {
+      font-family: 'Doloman', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      position: absolute;
+      width: 239px;
+      left: 45%;
+      top: 515px;
+      transform: translateX(calc(-50% - 6.5px));
+      line-height: 1.3;
+    }
+
+    /* ═══════════════════════ РАСПИСАНИЕ W360 H668 ═══════════════════════ */
+    .b-sched {
+      width: 360px;
+      height: 668px;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .b-sched__h {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      position: absolute;
+      left: 50%;
+      top: 16px;
+      transform: translateX(calc(-50% + 9px));
+      white-space: pre;
+      line-height: 1;
+    }
+
+    /* разделители: group left:18 top:243, lines at top 0/93/180/270/360 */
+    .b-sched__line {
+      width: 325px;
+      height: 1px;
+      background: rgba(232, 229, 226, 1);
+      position: absolute;
+      left: 18px;
+    }
+
+    /* пункты расписания */
+    .b-sched__time {
+      font-family: 'SaintAmour', cursive;
+      font-size: 64px;
+      color: rgba(43, 36, 30, 1);
+      position: absolute;
+      left: 36%;
+      line-height: 1;
+      transform: translateX(calc(-50% - 83px + 41px));
+      white-space: pre;
+    }
+
+    .b-sched__ev {
+      font-family: 'Doloman', serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      position: absolute;
+      left: 41px;
+      white-space: pre;
+    }
+
+    /* ═══════════════════════ ДРЕСС КОД W360 H668 ═══════════════════════ */
+    .b-dress {
+      width: 360px;
+      height: 668px;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .b-dress__h {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      white-space: pre;
+      line-height: 1;
+    }
+
+    .b-dress__sub {
+      font-family: 'Doloman', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      text-align: center;
+      width: 290px;
+      position: absolute;
+      left: 50%;
+      top: 132px;
+      transform: translateX(-50%);
+    }
+
+    /* свотчи: group left:28 top:213, W304, 4 circles W55 at left 0/83/166/249 */
+    .b-dress__swatch {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      position: absolute;
+      top: 213px;
+      transition: transform .35s ease, box-shadow .35s ease;
+      cursor: default;
+    }
+
+    .b-dress__swatch:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, .15);
+    }
+
+    .b-dress__photo-r {
+      width: 158px;
+      height: 237px;
+      position: absolute;
+      left: 188px;
+      top: 304px;
+      background: url('images/e69c63772fc2f593f7b2dec10d3c8defc6a71e09.png') center/cover;
+    }
+
+    .b-dress__photo-l {
+      width: 158px;
+      height: 237px;
+      position: absolute;
+      left: 14px;
+      top: 381px;
+      background: url('images/d315bd92e58d4b45b52b5d75d9654e4badb0a18a.png') center/cover;
+    }
+
+    /* ═══════════════════════ ДЕТАЛИ W360 H668 ═══════════════════════ */
+    .b-det {
+      width: 360px;
+      height: 540px;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .b-det__inner {
+      width: 311px;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(calc(-50% + 8.5px));
+    }
+
+    .b-det__h {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1;
+      display: block;
+      text-align: center
+    }
+
+    .b-det__sh {
+      font-family: 'Doloman', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      display: block;
+    }
+
+    .b-det__p {
+      font-family: 'Doloman', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1.5;
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    /* ═══════════════════════ ТАЙМЕР W360 H209 ═══════════════════════ */
+    .b-timer {
+      width: 360px;
+      height: 260px;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .b-timer__inner {
+      width: 289px;
+      height: 133px;
+      position: absolute;
+      left: 36px;
+      top: 42px;
+    }
+
+    .b-timer__title {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      position: absolute;
+      left: 0;
+      top: 0;
+      white-space: pre;
+      line-height: 1;
+    }
+
+    .b-timer__nums {
+      position: absolute;
+      top: 91px;
+      left: 0;
+      display: flex;
+      gap: 0;
+    }
+
+    .b-timer__cell {
+      width: 103px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .b-timer__num {
+      font-family: 'Felidae', serif;
+      font-size: 48px;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1;
+    }
+
+    .b-timer__label-day {
+      font-family: 'Doloman', serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1;
+      margin-top: 4px;
+    }
+
+    .b-timer__label {
+      font-family: 'Doloman', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════ АНКЕТА W360 H668 ═══════════════════════ */
+    .b-anketa {
+      width: 360px;
+      min-height: 520px;
+      margin: 0 auto;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+      padding-bottom: 48px;
+    }
+
+    .b-anketa__h {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1;
+      margin-bottom: 32px;
+      flex-shrink: 0;
+    }
+
+    .anketa-field {
+      display: block;
+      width: 280px;
+      padding: 13px 14px;
+      border: 0;
+      border-bottom: 1px solid rgba(232, 229, 226, 1);
+      background: transparent;
+      color: rgba(43, 36, 30, 1);
+      font-family: 'Doloman', serif;
+      font-size: 16px;
+      font-weight: 300;
+      outline: none;
+      margin-bottom: 8px;
+      transition: border-color .3s;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .anketa-field:focus {
+      border-color: rgba(43, 36, 30, 1);
+    }
+
+    .anketa-field::placeholder {
+      color: rgba(43, 36, 30, .45);
+    }
+
+    .anketa-submit {
+      width: 226px;
+      height: 41px;
+      margin-top: 24px;
+    }
+
+    .anketa-ok {
+      display: none;
+      font-family: 'Doloman', serif;
+      font-size: 16px;
+      color: rgba(85, 85, 35, 1);
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    /* ═══════════════════════ КОНТАКТЫ W360 H329 ═══════════════════════ */
+    .b-contacts {
+      width: 360px;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+      overflow: hidden;
+      padding: 0 36px 48px;
+    }
+
+    .b-contacts__h {
+      font-family: 'SaintAmour', cursive;
+      font-size: 96px;
+      color: rgba(43, 36, 30, 1);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .b-contacts__pre {
+      font-family: 'Doloman', serif;
+      font-size: 24px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .b-contacts__name {
+      font-family: 'Doloman', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      display: block;
+      line-height: 1.8;
+    }
+
+    .b-contacts__thanks {
+      font-family: 'Doloman', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(43, 36, 30, 1);
+      text-align: center;
+      display: block;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── 1. HERO ── -->
+  <div class="b-hero">
+    <div class="b-hero__bg"></div>
+    <div class="b-hero__names">
+      <p class="b-hero__n1 fade">Денис</p>
+      <p class="b-hero__and fade" style="transition-delay:.15s">и</p>
+      <p class="b-hero__n2 fade" style="transition-delay:.28s">Ульяна</p>
+    </div>
+  </div>
+
+  <!-- ── 2. ДОРОГИЕ ГОСТИ ── -->
+  <div class="b-guests">
+    <p class="b-guests__h fade">Дорогие гости!</p>
+    <p class="b-guests__sub fade" style="transition-delay:.08s">Мы будем счастливы разделить этот день вместе с вами.
+    </p>
+    <p class="b-guests__date fade" style="transition-delay:.16s">15 августа 2027</p>
+    <a href="#anketa" class="btn btn--rsvp fade" style="transition-delay:.24s"><span>Подтвердить присутствие</span></a>
+    <div class="b-guests__map fade" style="transition-delay:.32s">
+      <iframe loading="lazy"
+        src="https://yandex.ru/map-widget/v1/?text=г.+Барнаул,+фирсово+переулок+15&z=15&lang=ru_RU"></iframe>
+    </div>
+    <p class="b-guests__addr fade" style="transition-delay:.38s">г.Барнаул, фирсово переулок 15</p>
+    <a class="btn btn--route fade" style="transition-delay:.44s"
+      href="https://yandex.ru/maps/?text=г.+Барнаул,+фирсово+переулок+15" target="_blank"
+      rel="noopener"><span>Маршрут</span></a>
+  </div>
+
+  <!-- ── 3. НАША ИСТОРИЯ ── -->
+  <div class="b-story">
+    <p class="b-story__h fade">Наша история</p>
+    <div class="b-story__photo-l fade" style="transition-delay:.1s"></div>
+    <div class="b-story__photo-r fade" style="transition-delay:.2s"></div>
+    <div class="b-story__text fade" style="transition-delay:.3s">
+      Познакомились в 2021 году.<br>
+      Первое свидание затянулось на 6 часов.<br>
+      А теперь решили стать семьёй.
+    </div>
+  </div>
+
+  <!-- ── 4. РАСПИСАНИЕ ── -->
+  <div class="b-sched">
+    <p class="b-sched__h fade">Расписание дня</p>
+    <!-- разделители: group top:243, lines at +0/93/180/270/360 -->
+    <div class="b-sched__line fade" style="top:243px;transition-delay:.05s"></div>
+    <div class="b-sched__line fade" style="top:336px;transition-delay:.1s"></div>
+    <div class="b-sched__line fade" style="top:423px;transition-delay:.15s"></div>
+    <div class="b-sched__line fade" style="top:513px;transition-delay:.2s"></div>
+    <div class="b-sched__line fade" style="top:603px;transition-delay:.25s"></div>
+    <!-- group 3_76: left:41 top:16 -->
+    <!-- времена: top = 16 + 127/217/307/397/487 -->
+    <p class="b-sched__time fade" style="top:143px;transition-delay:.06s">14:00</p>
+    <p class="b-sched__time fade" style="top:233px;transition-delay:.11s">15:00</p>
+    <p class="b-sched__time fade" style="top:323px;transition-delay:.16s">16:00</p>
+    <p class="b-sched__time fade" style="top:413px;transition-delay:.21s">17:00</p>
+    <p class="b-sched__time fade" style="top:503px;transition-delay:.26s">22:00</p>
+    <!-- события: top = 16 + 184/274/364/454/544 -->
+    <p class="b-sched__ev fade" style="top:200px;transition-delay:.08s">-- Сбор гостей</p>
+    <p class="b-sched__ev fade" style="top:290px;transition-delay:.13s">-- Церемония</p>
+    <p class="b-sched__ev fade" style="top:380px;transition-delay:.18s">-- Фотосессия</p>
+    <p class="b-sched__ev fade" style="top:470px;transition-delay:.23s">-- Банкет</p>
+    <p class="b-sched__ev fade" style="top:560px;transition-delay:.28s">-- Завершение</p>
+  </div>
+
+  <!-- ── 5. ДРЕСС КОД ── -->
+  <div class="b-dress">
+    <p class="b-dress__h fade">Дресс код</p>
+    <p class="b-dress__sub fade" style="transition-delay:.08s">Мы будем рады, если вы поддержите цветовую гамму
+      праздника.</p>
+    <!-- свотчи: group left:28, circles at left 0/83/166/249 + 28 = 28/111/194/277 -->
+    <div class="b-dress__swatch fade" style="left:28px;background:rgba(180,178,139,1);transition-delay:.12s"></div>
+    <div class="b-dress__swatch fade" style="left:111px;background:rgba(119,83,46,1);transition-delay:.16s"></div>
+    <div class="b-dress__swatch fade" style="left:194px;background:rgba(85,85,35,1);transition-delay:.20s"></div>
+    <div class="b-dress__swatch fade" style="left:277px;background:rgba(75,46,32,1);transition-delay:.24s"></div>
+    <div class="b-dress__photo-r fade" style="transition-delay:.18s"></div>
+    <div class="b-dress__photo-l fade" style="transition-delay:.28s"></div>
+  </div>
+
+  <!-- ── 6. ДЕТАЛИ ── -->
+  <div class="b-det">
+    <div class="b-det__inner">
+      <span class="b-det__h fade">Детали</span>
+      <span class="b-det__sh fade" style="margin-top:24px;display:block;transition-delay:.06s">Трансфер</span>
+      <span class="b-det__p fade" style="transition-delay:.08s">В день свадьбы будет трансфер, в анкете укажите, нужен
+        или нет.</span>
+      <span class="b-det__sh fade" style="transition-delay:.12s">Подарки</span>
+      <span class="b-det__p fade" style="transition-delay:.14s">Лучший подарок для нас — ваше присутствие. Если вы
+        захотите сделать подарок, будем рады вкладу в наше свадебное путешествие.</span>
+      <span class="b-det__sh fade" style="transition-delay:.18s">Пожелания</span>
+      <span class="b-det__p fade" style="transition-delay:.2s">Мы хотим сделать праздник топ уровня, поэтому просим
+        воздержаться от криков "Горько".</span>
+    </div>
+  </div>
+
+  <!-- ── 7. ТАЙМЕР ── -->
+  <div class="b-timer">
+    <div class="b-timer__inner">
+      <p class="b-timer__title fade">До свадьбы осталось</p>
+      <div class="b-timer__nums fade" style="transition-delay:.1s">
+        <div class="b-timer__cell">
+          <span class="b-timer__num" id="t-days">000</span>
+          <span class="b-timer__label-day">Дней</span>
+        </div>
+        <div class="b-timer__cell">
+          <span class="b-timer__num" id="t-hours">00</span>
+          <span class="b-timer__label">Часов</span>
+        </div>
+        <div class="b-timer__cell">
+          <span class="b-timer__num" id="t-mins">00</span>
+          <span class="b-timer__label">Минут</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 8. АНКЕТА ── -->
+  <div class="b-anketa" id="anketa">
+    <p class="b-anketa__h fade">Анкета</p>
+    <form id="guestForm" style="display:flex;flex-direction:column;align-items:center;width:100%;">
+      <input name="name" type="text" placeholder="Ваше имя" required class="anketa-field fade"
+        style="transition-delay:.06s">
+      <select name="attend" class="anketa-field fade" style="transition-delay:.1s">
+        <option value="yes">Буду на свадьбе</option>
+        <option value="no">Не смогу прийти</option>
+      </select>
+      <select name="transfer" class="anketa-field fade" style="transition-delay:.14s">
+        <option value="yes">Нужен трансфер</option>
+        <option value="no">Трансфер не нужен</option>
+      </select>
+      <textarea name="wishes" rows="3" placeholder="Пожелания" class="anketa-field fade"
+        style="transition-delay:.18s;resize:vertical;"></textarea>
+      <a href="#" class="btn anketa-submit fade" style="transition-delay:.22s" id="submitBtn"><span>Отправить</span></a>
+      <p class="anketa-ok" id="anketa-ok">Спасибо! Мы получили ваш ответ 🤍</p>
+    </form>
+  </div>
+
+  <!-- ── 9. КОНТАКТЫ ── -->
+  <div class="b-contacts">
+    <span class="b-contacts__h fade">Контакты</span>
+    <span class="b-contacts__pre fade" style="transition-delay:.06s">По любым вопросам:</span>
+    <span class="b-contacts__name fade" style="transition-delay:.1s">Анна<br>+7 XXX XXX XX XX</span>
+    <span class="b-contacts__name fade" style="transition-delay:.14s;margin-top:8px;">Дмитрий<br>+7 XXX XXX XX XX</span>
+    <span class="b-contacts__thanks fade" style="transition-delay:.2s">Спасибо, что будете рядом в этот важный
+      день!</span>
+  </div>
+
+  <script>
+    /* scroll reveal */
+    const els = document.querySelectorAll('.fade');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+    }, { threshold: 0.06 });
+    els.forEach(el => io.observe(el));
+
+    /* smooth scroll to anketa */
+    document.querySelector('a[href="#anketa"]')?.addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('anketa').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    /* таймер — дата свадьбы 15 августа 2027 */
+    const WEDDING = new Date('2027-08-15T12:00:00');
+    function updateTimer() {
+      const diff = WEDDING - Date.now();
+      if (diff <= 0) { document.querySelector('.b-timer__inner').innerHTML = '<p class="b-timer__title">Сегодня наш день!</p>'; return; }
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      document.getElementById('t-days').textContent = String(d).padStart(3, '0');
+      document.getElementById('t-hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('t-mins').textContent = String(m).padStart(2, '0');
+    }
+    updateTimer();
+    setInterval(updateTimer, 10000);
+
+    /* форма */
+    const ENDPOINT = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+    document.getElementById('submitBtn').addEventListener('click', async e => {
+      e.preventDefault();
+      const form = document.getElementById('guestForm');
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        if (!ENDPOINT.startsWith('PASTE_')) {
+          await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(data) });
+        }
+        document.getElementById('anketa-ok').style.display = 'block';
+        form.querySelectorAll('input,select,textarea').forEach(el => el.disabled = true);
+        document.getElementById('submitBtn').style.opacity = '.4';
+        document.getElementById('submitBtn').style.pointerEvents = 'none';
+      } catch (ex) { alert('Не получилось отправить, попробуйте ещё раз.'); }
+    });
+  </script>
+</body>
+
+</html>
